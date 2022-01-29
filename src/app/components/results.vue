@@ -22,8 +22,8 @@
           </div>
         </div>
       </li>
-        <div v-if="results.length === 0">
-          <h4>No results, Sorry about that</h4>
+        <div v-if="results.length === 0 && currentQuery.length >= 1">
+          <h4>No results - Sorry about that</h4>
           <h6>Tips:</h6>
           <ul>
             <li>Check your spelling?</li>
@@ -35,6 +35,9 @@
               <i style="cursor: pointer;">The Owner</i>
             </b-tooltip>
           </h6>
+        </div>
+        <div v-else-if="results.length === 0">
+          <h4>Search for anything!</h4>
         </div>
       </span>
       <span v-if="isLoading">
@@ -87,6 +90,7 @@
 export default {
   name: 'results',
   props: {
+    currentQuery: String,
     isLoading: Boolean,
     results: Array
   },
@@ -121,7 +125,22 @@ export default {
               this.$emit('doReloadResults')
             })
           } else if (type === 'movie') {
+            this.$services.movie.doAdd(id).then(data => {
+              this.$buefy.toast.open({
+                message: 'Added successfully',
+                type: 'is-success'
+              })
 
+              console.log(data)
+            }).catch(error => {
+              this.$buefy.toast.open({
+                message: error,
+                type: 'is-danger'
+              })
+            }).finally(_ => {
+              this.isLoadingAdded = false
+              this.$emit('doReloadResults')
+            })
           }
         }
       })
@@ -131,7 +150,7 @@ export default {
 </script>
 
 <style scoped>
-.media-content { cursor: pointer; }
+.media-content {  }
 .add-content { position: absolute; bottom: 1em; right: 1em; }
 .poster { width: 10em !important; border: 0 solid; border-radius: 10px !important; }
 .rating { margin-top: 0.3em !important; }
