@@ -14,7 +14,7 @@
               <div class="media-content">
                 <p class="title is-4">{{ result.title }}</p>
                 <p class="subtitle is-6">{{ result.year }}</p>
-                <p class="overview">{{ result.overview }}</p>
+                <p class="overview">{{ result.overview | ellipses }}</p>
                 <b-button v-if="!result.onDrive" class="add-content" type="is-success" :disabled="result.onDrive" @click="doClickAdd(result.title, result.id, result.type)" >Add</b-button>
                 <b-button v-if="result.onDrive" class="add-content" type="is-info" :disabled="result.onDrive">Added</b-button>
               </div>
@@ -150,9 +150,9 @@ export default {
 </script>
 
 <style scoped>
-.media-content {  }
+.media-content { }
 .add-content { position: absolute; bottom: 1em; right: 1em; }
 .poster { width: 10em !important; border: 0 solid; border-radius: 10px !important; }
 .rating { margin-top: 0.3em !important; }
-.overview { text-overflow: ellipsis; max-height: 5em !important; display: none; }
+.overview { overflow: hidden; max-height: 6em !important; }
 </style>
