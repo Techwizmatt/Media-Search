@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* ---------- Base Frameworks ---------- */
+@import "~bulma/sass/utilities/_all";
+@import "variables";
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
+
+/* ---------- Font Awesome ---------- */
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/icons";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+
+/* ---------- Navigation Bar ---------- */
+//.navbar { background:$primary !important; color:$primary-invert !important; box-shadow:0 5px 10px 0 rgba(150, 169, 141, 0.35) !important; -webkit-box-shadow:0 5px 10px 0 rgba(150, 169, 141, 0.35) !important; -moz-box-shadow:0 5px 10px 0 rgba(150, 169, 141, 0.35) !important; height:3.5em !important; left:0 !important; position:fixed !important; right:0 !important; z-index:50 !important; }
+//.navbar-item,
+//.navbar-link,
+//.navbar-item.has-dropdown .navbar-link { padding:0 1.5em !important; }
+//.navbar-item > img { height: 10em !important; }
+
+/* ---------- HTML / Body ---------- */
+* { font-family:'Roboto', sans-serif; font-weight:300 !important; }
+html { overflow-y:scroll; overflow-x:hidden; scroll-behavior:smooth; }
+body { color:#202020; }
+.container { padding-top: 1.5em !important; }
+
+h1, h2, h3, h4, h5, h6 { margin:0 !important; padding:0 0 .5em 0 !important; }
+h1 { font-size:3.5em; }
+h2 { font-size:3em; }
+h3 { font-size:2.5em; }
+h4 { font-size:2em; }
+h5 { font-size:1.5em; }
+h6 { font-size:1em; }
+
+img { max-width:100%; height:auto; }

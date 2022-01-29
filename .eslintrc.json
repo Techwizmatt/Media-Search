@@ -1,0 +1,21 @@
+{
+  "root": true,
+  "env": {
+    "node": true
+  },
+  "extends": [
+    "plugin:vue/essential",
+    "@vue/standard"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2020
+  },
+  "rules": {
+    "no-caller": "off",
+    "no-unused-vars": "off"
+  },
+  "ignorePatterns": [
+    "**/node_modules/*.js"
+  ]
+}
+
