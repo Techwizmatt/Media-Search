@@ -11,7 +11,7 @@ Vue.filter('fileSize', function (size = 0, round = 1) {
 })
 
 Vue.filter('ellipses', function (string, size = 250) {
-  if (string !== undefined && size !== undefined && !isNaN(size)) {
+  if (string !== undefined && string !== null && size !== undefined && !isNaN(size)) {
     return (string.length > size) ? string.substr(0, size - 1) + ' ...' : string
   }
 
