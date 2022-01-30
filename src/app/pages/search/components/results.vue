@@ -9,7 +9,6 @@
             <div class="media">
               <div class="media-left">
                 <img class="poster" :alt="result.title" :src="result.poster"/>
-<!--                <b-tag type="is-success" size="">Medium</b-tag>-->
               </div>
               <div class="media-content">
                 <p class="title is-4">{{ result.title }}</p>

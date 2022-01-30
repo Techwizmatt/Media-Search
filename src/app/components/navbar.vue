@@ -16,7 +16,10 @@
     </template>
     <template #start>
       <b-navbar-item tag="router-link" :to="{ path: '/' }">
-        Home
+        Search
+      </b-navbar-item>
+      <b-navbar-item tag="router-link" :to="{ path: '/queue' }">
+        Queue
       </b-navbar-item>
     </template>
 

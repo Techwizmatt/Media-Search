@@ -63,6 +63,12 @@ $colors: mergeColorMaps(
                 $danger-light,
                 $danger-dark,
         ),
+        "purple": (
+                #6c5ce7,
+                findColorInvert(#6c5ce7),
+                findLightColor(#6c5ce7),
+                findDarkColor(#6c5ce7)
+        ),
     ),
     $custom-colors
 );

@@ -6,7 +6,14 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    component: require('@/app/index').default,
+    component: require('@/app/pages/search').default,
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
+    path: '/queue',
+    component: require('@/app/pages/queue').default,
     meta: {
       requiresAuth: false
     }

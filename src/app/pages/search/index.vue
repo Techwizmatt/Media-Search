@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import Search from '@/app/components/search'
-import Results from '@/app/components/results'
+import Search from '@/app/pages/search/components/search'
+import Results from '@/app/pages/search/components/results'
 
 export default {
   components: { Results, Search },

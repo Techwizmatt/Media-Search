@@ -9,5 +9,14 @@ export default {
         reject(error)
       })
     })
+  },
+  doGetDownloads: async function () {
+    return new Promise((resolve, reject) => {
+      http.get('/status/downloads').then(data => {
+        resolve(data.data)
+      }).catch(error => {
+        reject(error)
+      })
+    })
   }
 }
