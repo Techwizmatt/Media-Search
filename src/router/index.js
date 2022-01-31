@@ -6,16 +6,23 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    component: require('@/app/pages/search').default,
+    component: require('@/app/pages/auth').default,
     meta: {
       requiresAuth: false
+    }
+  },
+  {
+    path: '/search',
+    component: require('@/app/pages/search').default,
+    meta: {
+      requiresAuth: true
     }
   },
   {
     path: '/queue',
     component: require('@/app/pages/queue').default,
     meta: {
-      requiresAuth: false
+      requiresAuth: true
     }
   }
 ]
@@ -30,7 +37,7 @@ router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('token')
 
   if (to.fullPath === '/' && token) {
-    next()
+    next({ path: '/search' })
   } else if (to.matched.some(route => route.meta.requiresAuth && !token)) {
     next({ path: '/' })
   } else {

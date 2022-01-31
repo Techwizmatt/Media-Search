@@ -1,21 +1,12 @@
 <template>
-<!--  <section>-->
-<!--    <nav class="navbar">-->
-<!--      <div class="navbar-brand">-->
-<!--        <router-link class="navbar-item" to="/">-->
-<!--          <img alt="Kunai Knife logo" src="../../assets/media/kunai.png">-->
-<!--        </router-link>-->
-<!--      </div>-->
-<!--    </nav>-->
-<!--  </section>-->
-  <b-navbar shadow fixed-top>
+  <b-navbar shadow fixed-top :class="visable ? '' : 'hidden'">
     <template #brand>
-      <b-navbar-item tag="router-link" :to="{ path: '/' }">
+      <b-navbar-item tag="router-link" :to="{ path: '/search' }">
         <img src="../../assets/media/kunai.png" alt="Kunai Knife logo">
       </b-navbar-item>
     </template>
     <template #start>
-      <b-navbar-item tag="router-link" :to="{ path: '/' }">
+      <b-navbar-item tag="router-link" :to="{ path: '/search' }">
         Search
       </b-navbar-item>
       <b-navbar-item tag="router-link" :to="{ path: '/queue' }">
@@ -23,7 +14,14 @@
       </b-navbar-item>
     </template>
 
+    <template #center>
+
+    </template>
+
     <template #end>
+      <b-navbar-item tag="div">
+        Welcome {{ status.user.firstName }} {{ status.user.lastName }}
+      </b-navbar-item>
       <b-navbar-item tag="div" v-if="status">
         <div class="buttons">
           <b-dropdown :triggers="['hover']">
@@ -37,13 +35,6 @@
           </b-dropdown>
         </div>
       </b-navbar-item>
-      <b-navbar-item tag="div">
-        <div class="buttons">
-          <a class="button is-light">
-            Log in
-          </a>
-        </div>
-      </b-navbar-item>
     </template>
   </b-navbar>
 </template>
@@ -52,23 +43,35 @@
 export default {
   data: () => ({
     timeout: null,
-    status: null
+    visable: true,
+    status: {
+      user: {}
+    }
   }),
   methods: {
-    doStartDownloadSpeed () {
+    doGetCurrentStatus () {
       this.$services.status.doGetCurrent().then(data => {
         this.status = data
 
         this.timeout = setTimeout(() => {
-          this.doStartDownloadSpeed()
+          this.doGetCurrentStatus()
         }, 5000)
       }).catch(error => {
         console.log(error)
       })
+    },
+    onMount () {
+      clearTimeout(this.timeout)
+
+      if (this.visable) {
+        this.doGetCurrentStatus()
+      }
     }
   },
   mounted () {
-    this.doStartDownloadSpeed()
+    this.visable = this.$route.meta.requiresAuth
+
+    this.onMount()
   },
   destroyed () {
     try {
@@ -76,11 +79,17 @@ export default {
     } catch (error) {
       console.log('Error clearing interval')
     }
-  }
+  },
+  watch: {
+    $route: function (to, from) {
+      this.visable = to.meta.requiresAuth
 
+      this.onMount()
+    }
+  }
 }
 </script>
 
 <style scoped>
-
+.hidden { display: none }
 </style>

@@ -40,5 +40,17 @@ Vue.mixin({
 
 new Vue({
   router: require('@/router').default,
-  render: h => h(require('@/App').default)
+  render: h => h(require('@/App').default),
+  created () {
+    Vue.prototype.$http.interceptors.response.use((response) => response, (error) => {
+      if (error) {
+        if (this.$route.fullPath !== '/' && error.response.status === 401) {
+          localStorage.removeItem('token')
+          this.$router.push({ path: '/' })
+        }
+      }
+
+      return error
+    })
+  }
 }).$mount('#app')

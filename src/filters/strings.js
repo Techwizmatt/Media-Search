@@ -22,3 +22,12 @@ Vue.filter('ellipses', function (string, size = 250) {
 Vue.filter('formatTimeFromSeconds', function (value = 0, format = 'HH:mm:ss') {
   return moment.utc(value * 1000).format(format)
 })
+
+Vue.filter('formatPhoneNumber', function (phoneNumberString = 0) {
+  const cleaned = ('' + phoneNumberString).replace(/\D/g, '')
+  const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/)
+  if (match) {
+    return '(' + match[1] + ') ' + match[2] + '-' + match[3]
+  }
+  return phoneNumberString
+})
