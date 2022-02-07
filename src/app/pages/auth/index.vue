@@ -68,10 +68,15 @@ export default {
 
       this.$services.auth.doSignIn(this.phoneNumber, this.code).then(data => {
         localStorage.setItem('token', data.token)
+        localStorage.setItem('user', JSON.stringify(data.user))
 
         this.$http.defaults.headers.common.Authorization = `Bearer ${data.token}`
 
-        this.$router.push({ path: '/search' })
+        if (data.user.firstLogin) {
+          this.$router.push({ path: '/welcome' })
+        } else {
+          this.$router.push({ path: '/search' })
+        }
       }).catch(_ => {
         this.$buefy.toast.open({
           message: 'An error occurred',

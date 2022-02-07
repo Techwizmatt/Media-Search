@@ -1,6 +1,7 @@
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import './registerServiceWorker'
 
 require('@/assets/stylesheet.scss')
 require('@/filters/strings')
@@ -48,9 +49,9 @@ new Vue({
           localStorage.removeItem('token')
           this.$router.push({ path: '/' })
         }
-      }
 
-      return error
+        return Promise.reject(error)
+      }
     })
   }
 }).$mount('#app')

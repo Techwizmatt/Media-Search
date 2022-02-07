@@ -8,21 +8,40 @@ const routes = [
     path: '/',
     component: require('@/app/pages/auth').default,
     meta: {
-      requiresAuth: false
+      requiresAuth: false,
+      showNav: false
+    }
+  },
+  {
+    path: '/welcome',
+    component: require('@/app/pages/welcome').default,
+    meta: {
+      requiresAuth: true,
+      showNav: false
     }
   },
   {
     path: '/search',
     component: require('@/app/pages/search').default,
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      showNav: true
     }
   },
   {
     path: '/queue',
     component: require('@/app/pages/queue').default,
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      showNav: true
+    }
+  },
+  {
+    path: '/admin',
+    component: require('@/app/pages/admin').default,
+    meta: {
+      requiresAuth: true,
+      showNav: true
     }
   }
 ]

@@ -33,8 +33,22 @@ export default {
         this.currentQuery = query
         this.isLoading = true
 
+        let delayToast = null
+
+        const delayNotice = setTimeout(_ => {
+          delayToast = this.$buefy.toast.open({
+            message: 'Still searching, Please wait...',
+            type: 'is-info',
+            indefinite: true
+          })
+        }, 3000)
+
         this.$services.search.doGetQuery(query).then(data => {
           this.results = data
+
+          if (delayToast) delayToast.close()
+
+          clearTimeout(delayNotice)
         }).catch(_ => {
           this.$buefy.toast.open({
             message: 'Unable to search for content',
