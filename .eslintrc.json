@@ -12,7 +12,12 @@
   },
   "rules": {
     "no-caller": "off",
-    "no-unused-vars": "off"
+    "no-unused-vars": "off",
+    "vue/html-closing-bracket-spacing": ["error", {
+      "startTag": "never",
+      "endTag": "never",
+      "selfClosingTag": "never"
+    }]
   },
   "ignorePatterns": [
     "**/node_modules/*.js"
