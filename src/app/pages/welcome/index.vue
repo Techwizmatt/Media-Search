@@ -1,7 +1,7 @@
 <template>
   <section>
     <b-steps v-model="active">
-      <b-step-item step="1" label="Welcome" clickable >
+      <b-step-item step="1" label="Welcome" clickable>
         <div class="columns">
           <div class="column is-three-fifths is-offset-one-fifth">
             <span class="has-text-centered">
