@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="columns">
-      <add-user class="column is-4" ></add-user>
+      <add-user class="column is-4"></add-user>
     </div>
 
   </section>

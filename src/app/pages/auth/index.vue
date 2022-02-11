@@ -10,8 +10,8 @@
             </p>
           </b-field>
           <span v-else>
-            <p class="ml-2">Sign in Code was sent to {{ phoneNumber | formatPhoneNumber }} <a @click="doReset" style="vertical-align: super; font-size: 0.8em;" >Edit</a></p>
-            <b-field class="mt-3" custom-class="is-medium" >
+            <p class="ml-2">Sign in Code was sent to {{ phoneNumber | formatPhoneNumber }} <a @click="doReset" style="vertical-align: super; font-size: 0.8em;">Edit</a></p>
+            <b-field class="mt-3" custom-class="is-medium">
               <b-input v-model="code" type="code" placeholder="Sign in Code" size="is-medium" maxlength="6" expanded :disabled="isLoading"></b-input>
 
               <p class="control is-hidden-mobile">

@@ -11,6 +11,7 @@ const Vue = require('vue').default
 Vue.config.productionTip = true
 
 Vue.prototype.$http = require('@/middleware/axios').default
+Vue.prototype.$chunk = require('chunk')
 Vue.prototype.$services = require('@/services/index')
 
 library.add(fas)

@@ -29,6 +29,14 @@ const routes = [
     }
   },
   {
+    path: '/media',
+    component: require('@/app/pages/media').default,
+    meta: {
+      requiresAuth: true,
+      showNav: true
+    }
+  },
+  {
     path: '/queue',
     component: require('@/app/pages/queue').default,
     meta: {

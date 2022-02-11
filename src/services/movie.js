@@ -11,5 +11,14 @@ export default {
         reject(error)
       })
     })
+  },
+  doGetAll: async function () {
+    return new Promise((resolve, reject) => {
+      http.get('/movie').then(data => {
+        resolve(data.data)
+      }).catch(error => {
+        reject(error)
+      })
+    })
   }
 }

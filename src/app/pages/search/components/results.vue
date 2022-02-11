@@ -14,7 +14,7 @@
                 <p class="title is-4">{{ result.title }}</p>
                 <p class="subtitle is-6">{{ result.year }}</p>
                 <p class="overview">{{ result.overview | ellipses }}</p>
-                <b-button v-if="!result.onDrive" class="add-content" type="is-success" :disabled="result.onDrive" @click="doClickAdd(result.title, result.id, result.type)" >Add</b-button>
+                <b-button v-if="!result.onDrive" class="add-content" type="is-success" :disabled="result.onDrive" @click="doClickAdd(result.title, result.id, result.type)">Add</b-button>
                 <b-button v-if="result.onDrive" class="add-content" type="is-info" :disabled="result.onDrive">Added</b-button>
               </div>
             </div>

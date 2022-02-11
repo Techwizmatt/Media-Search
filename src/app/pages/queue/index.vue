@@ -1,14 +1,27 @@
 <template>
   <section>
-    <results :data="data.series" />
-    <p class="mt-5">This page does not currently show movies</p>
+    <b-loading :is-full-page="true" v-model="isLoading" :can-cancel="false"></b-loading>
+    <notice ref="notice">
+      <p>If you just added a TV Show or Movie it can take a moment for it to show up, I'm working on the logic for it.</p>
+      <br>
+      <p>Please note tracking this data is extremely difficult, Media may show that is not actually in the queue and failed. Oops.</p>
+    </notice>
+    <b-tabs class="mt-3" v-model="active" expanded>
+      <b-tab-item label="TV Shows">
+        <results :data="data.series"/>
+      </b-tab-item>
+      <b-tab-item label="Movies">
+        <results :data="data.movies"/>
+      </b-tab-item>
+    </b-tabs>
   </section>
 </template>
 
 <script>
 import Results from '@/app/pages/queue/components/results'
+import Notice from '@/app/components/notice'
 export default {
-  components: { Results },
+  components: { Notice, Results },
   data: () => ({
     active: 0,
     data: {},
@@ -32,6 +45,7 @@ export default {
   },
   mounted () {
     this.doStartQueueCheck()
+    this.$refs.notice.doOpen()
   },
   destroyed () {
     try {

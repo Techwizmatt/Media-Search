@@ -9,6 +9,9 @@
       <b-navbar-item tag="router-link" :to="{ path: '/search' }">
         Search
       </b-navbar-item>
+      <b-navbar-item tag="router-link" :to="{ path: '/media' }">
+        Media
+      </b-navbar-item>
       <b-navbar-item tag="router-link" :to="{ path: '/queue' }">
         Queue
       </b-navbar-item>
@@ -45,6 +48,7 @@
 
 <script>
 import Plex from '@/app/components/plex'
+
 export default {
   components: { Plex },
   data: () => ({
