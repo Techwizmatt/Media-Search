@@ -1,49 +1,51 @@
 <template>
-  <b-navbar shadow fixed-top :class="visible ? '' : 'hidden'">
-    <template #brand>
-      <b-navbar-item tag="router-link" :to="{ path: '/search' }">
-        <img src="../../assets/media/kunai.png" alt="Kunai Knife logo">
-      </b-navbar-item>
-    </template>
-    <template #start>
-      <b-navbar-item tag="router-link" :to="{ path: '/search' }">
-        Search
-      </b-navbar-item>
-      <b-navbar-item tag="router-link" :to="{ path: '/media' }">
-        Media
-      </b-navbar-item>
-      <b-navbar-item tag="router-link" :to="{ path: '/queue' }">
-        Queue
-      </b-navbar-item>
-      <b-navbar-item v-if="status.user.isAdmin" tag="router-link" :to="{ path: '/admin' }">
-        Admin
-      </b-navbar-item>
-    </template>
+  <section>
+    <b-navbar shadow fixed-top :class="visible ? '' : 'hidden'">
+      <template #brand>
+        <b-navbar-item tag="router-link" :to="{ path: '/search' }">
+          <img src="../../assets/media/kunai.png" alt="Kunai Knife logo">
+        </b-navbar-item>
+      </template>
+      <template #start>
+        <b-navbar-item tag="router-link" :to="{ path: '/search' }">
+          Search
+        </b-navbar-item>
+        <b-navbar-item tag="router-link" :to="{ path: '/media' }">
+          Media
+        </b-navbar-item>
+        <b-navbar-item tag="router-link" :to="{ path: '/queue' }">
+          Queue
+        </b-navbar-item>
+        <b-navbar-item v-if="status.user.isAdmin" tag="router-link" :to="{ path: '/admin' }">
+          Admin
+        </b-navbar-item>
+      </template>
 
-    <template #center>
+      <template #center>
 
-    </template>
+      </template>
 
-    <template #end>
-      <b-navbar-item tag="div">
-        Welcome {{ status.user.firstName }} {{ status.user.lastName }}
-      </b-navbar-item>
-      <b-navbar-item tag="div" v-if="status">
-        <div class="buttons">
-          <b-dropdown :triggers="['hover']">
-            <template #trigger>
-              <b-button outline><b-icon class="mr-2" :icon="status.DownloadPaused ? 'pause' : 'sync-alt'" :custom-class="status.DownloadPaused ? '' : 'fa-spin'"></b-icon>{{ status.DownloadRate | fileSize }} / Sec</b-button>
-            </template>
+      <template #end>
+        <b-navbar-item tag="div">
+          Welcome {{ status.user.firstName }} {{ status.user.lastName }}
+        </b-navbar-item>
+        <b-navbar-item tag="div" v-if="status">
+          <div class="buttons">
+            <b-dropdown :triggers="['hover']">
+              <template #trigger>
+                <b-button outline><b-icon class="mr-2" :icon="status.DownloadPaused ? 'pause' : 'sync-alt'" :custom-class="status.DownloadPaused ? '' : 'fa-spin'"></b-icon>{{ status.DownloadRate | fileSize }} / Sec</b-button>
+              </template>
 
-            <b-dropdown-item disabled>{{ (status.RemainingSizeMB * 1000000) | fileSize }} left in Download queue</b-dropdown-item>
-            <b-dropdown-item disabled v-if="(status.FreeDiskSpaceMB <= 10000)">{{ (status.FreeDiskSpaceMB * 1000000) | fileSize }} left</b-dropdown-item>
+              <b-dropdown-item disabled>{{ (status.RemainingSizeMB * 1000000) | fileSize }} left in Download queue</b-dropdown-item>
+              <b-dropdown-item disabled v-if="(status.FreeDiskSpaceMB <= 10000)">{{ (status.FreeDiskSpaceMB * 1000000) | fileSize }} left</b-dropdown-item>
 
-          </b-dropdown>
-        </div>
-      </b-navbar-item>
-      <plex ref="plex"></plex>
-    </template>
-  </b-navbar>
+            </b-dropdown>
+          </div>
+        </b-navbar-item>
+      </template>
+    </b-navbar>
+    <plex ref="plex"></plex>
+  </section>
 </template>
 
 <script>
