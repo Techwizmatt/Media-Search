@@ -1,8 +1,9 @@
 <template>
   <section>
-    <b-loading :is-full-page="true" v-model="isLoading" :can-cancel="false"></b-loading>
     <div class="card p-5">
-      <h4>Create user</h4>
+      <b-loading :is-full-page="false" v-model="isLoading" :can-cancel="false"></b-loading>
+      <p class="title">Create user</p>
+      <p class="subtitle is-size-6">Register with plex first</p>
       <form @submit.prevent="doAdd">
         <b-field label="First Name">
           <b-input icon="user-circle" v-model="user.firstName" placeholder="John" maxlength="16"></b-input>
@@ -42,6 +43,8 @@ export default {
           message: 'Successfully added user',
           duration: 3000
         })
+
+        this.doReset()
       }).catch(_ => {
         this.$buefy.toast.open({
           type: 'is-danger',
@@ -51,6 +54,14 @@ export default {
       }).finally(_ => {
         this.isLoading = false
       })
+    },
+    doReset: function () {
+      this.user = {
+        firstName: null,
+        lastName: null,
+        phone: null,
+        email: null
+      }
     }
   }
 }
