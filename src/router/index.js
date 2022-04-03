@@ -45,6 +45,14 @@ const routes = [
     }
   },
   {
+    path: '/downloads',
+    component: require('@/app/pages/downloads').default,
+    meta: {
+      requiresAuth: true,
+      showNav: true
+    }
+  },
+  {
     path: '/admin',
     component: require('@/app/pages/admin').default,
     meta: {

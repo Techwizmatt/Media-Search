@@ -4,5 +4,6 @@ module.exports = {
   status: require('@/services/status').default,
   series: require('@/services/series').default,
   movie: require('@/services/movie').default,
-  users: require('@/services/users').default
+  users: require('@/services/users').default,
+  queue: require('@/services/queue').default
 }

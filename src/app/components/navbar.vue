@@ -13,9 +13,9 @@
         <b-navbar-item tag="router-link" :to="{ path: '/media' }">
           Media
         </b-navbar-item>
-        <b-navbar-item tag="router-link" :to="{ path: '/queue' }">
-          Queue
-        </b-navbar-item>
+<!--        <b-navbar-item tag="router-link" :to="{ path: '/downloads' }">-->
+<!--          Downloads-->
+<!--        </b-navbar-item>-->
         <b-navbar-item v-if="status.user.isAdmin" tag="router-link" :to="{ path: '/admin' }">
           Admin
         </b-navbar-item>
@@ -31,13 +31,13 @@
         </b-navbar-item>
         <b-navbar-item tag="div" v-if="status">
           <div class="buttons">
-            <b-dropdown :triggers="['hover']">
+            <b-dropdown :triggers="['hover']" position="is-bottom-left">
               <template #trigger>
-                <b-button outline><b-icon class="mr-2" :icon="status.DownloadPaused ? 'pause' : 'sync-alt'" :custom-class="status.DownloadPaused ? '' : 'fa-spin'"></b-icon>{{ status.DownloadRate | fileSize }} / Sec</b-button>
+                <b-button outline @click="goToDownloads"><b-icon class="mr-2" :icon="status.DownloadPaused ? 'pause' : 'sync-alt'" :custom-class="status.DownloadPaused ? '' : 'fa-spin'"></b-icon>{{ status.DownloadRate | fileSize }} / Sec</b-button>
               </template>
 
               <b-dropdown-item disabled>{{ (status.RemainingSizeMB * 1000000) | fileSize }} left in Download queue</b-dropdown-item>
-              <b-dropdown-item disabled v-if="(status.FreeDiskSpaceMB <= 10000)">{{ (status.FreeDiskSpaceMB * 1000000) | fileSize }} left</b-dropdown-item>
+              <b-dropdown-item disabled>{{ (status.FreeDiskSpaceMB * 1000000) | fileSize }} left on Server</b-dropdown-item>
 
             </b-dropdown>
           </div>
@@ -93,6 +93,9 @@ export default {
           console.log(error)
         })
       }
+    },
+    goToDownloads () {
+      this.$router.push({ path: '/downloads' })
     }
   },
   mounted () {

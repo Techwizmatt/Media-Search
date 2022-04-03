@@ -14,6 +14,7 @@
         <results :data="data.movies"/>
       </b-tab-item>
     </b-tabs>
+    <h3>This page has been disabled, please redirect.</h3>
   </section>
 </template>
 
@@ -25,36 +26,9 @@ export default {
   data: () => ({
     active: 0,
     data: {},
+    queueBeta: [],
     isLoading: false
-  }),
-  methods: {
-    doStartQueueCheck () {
-      this.isLoading = true
-      this.$services.status.doGetDownloads().then(data => {
-        this.data = data
-
-        this.timeout = setTimeout(() => {
-          this.doStartQueueCheck()
-        }, 10000)
-      }).catch(error => {
-        console.log(error)
-      }).finally(_ => {
-        this.isLoading = false
-      })
-    }
-  },
-  mounted () {
-    this.doStartQueueCheck()
-    this.$refs.notice.doOpen()
-  },
-  destroyed () {
-    try {
-      clearTimeout(this.timeout)
-    } catch (error) {
-      console.log('Error clearing interval')
-    }
-  }
-
+  })
 }
 </script>
 
