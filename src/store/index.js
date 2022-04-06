@@ -58,10 +58,9 @@ export default new Vuex.Store({
         this.$services.auth.doSignIn(this.phoneNumber, this.code).then(data => {
           localStorage.setItem('token', data.token)
           localStorage.setItem('firstName', data.user.firstName)
-          localStorage.setItem('firstName', data.user.lastName)
-          localStorage.setItem('firstName', data.user.phone)
-          localStorage.setItem('firstName', data.user.email)
-          localStorage.setItem('firstName', data.user.plexInviteCode)
+          localStorage.setItem('lastName', data.user.lastName)
+          localStorage.setItem('phone', data.user.phone)
+          localStorage.setItem('email', data.user.email)
         }).catch(error => {
           reject(error)
         })

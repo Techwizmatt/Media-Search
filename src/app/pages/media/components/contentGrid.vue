@@ -5,7 +5,7 @@
         <b-image :src="content.poster" max-width></b-image>
         <div class="columns my-1">
           <div class="column">
-            <b-button expanded disabled="true" @click="doShowOptions(content)">Options</b-button>
+            <b-button expanded @click="doShowOptions(content)">Options</b-button>
           </div>
           <div class="column">
             <b-button expanded type="is-primary" disabled="true"><b-icon icon="play" class="mr-2"></b-icon>Play</b-button>
@@ -28,7 +28,11 @@ export default {
   },
   methods: {
     doShowOptions (content) {
-      alert(content.path)
+      this.$services.search.doShareMedia(content.path).then(data => {
+        console.log(data)
+      }).catch(error => {
+        console.log(error)
+      })
     }
   },
   computed: {

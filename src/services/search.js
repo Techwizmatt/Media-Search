@@ -13,5 +13,16 @@ export default {
         reject(error)
       })
     })
+  },
+  doShareMedia: async function (path) {
+    return new Promise((resolve, reject) => {
+      http.post('/search/share', {
+        path: path
+      }).then(data => {
+        resolve(data.data)
+      }).catch(error => {
+        reject(error)
+      })
+    })
   }
 }
